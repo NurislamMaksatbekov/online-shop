@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user-table
+      author: Nurislam
+      changes:
+        - createTable:
+            tableName: user_table
+            columns:
+              - column:
+                  name: email
+                  type: varchar(100)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enabled
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
