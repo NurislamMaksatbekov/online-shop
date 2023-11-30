@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users-roles-table
+      author: Nurislam
+      changes:
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: varchar(100)
+                  constraints:
+                    foreignKeyName: ufk_user_fk
+                    references: users(email)
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: long
+                  constraints:
+                    foreignKeyName: rfk_role_id
+                    references: roles(id)
+                    nullable: false

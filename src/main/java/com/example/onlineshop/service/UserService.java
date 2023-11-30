@@ -7,17 +7,28 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder encoder;
 
     public void registerNewUser(UserDto userDto) {
         var user = AppUser.builder()
                 .email(userDto.getEmail())
-                .password(passwordEncoder.encode(userDto.getPassword()))
+                .name(userDto.getName())
+                .password(encoder.encode(userDto.getPassword()))
                 .build();
-        userRepository.save(user);
+        if (!checkEmail(user.getEmail())) {
+            userRepository.save(user);
+        } else throw new IllegalArgumentException("User with this email already exists.");
+    }
+
+    public boolean checkEmail(String email) {
+        return userRepository.findAll()
+                .stream()
+                .anyMatch(user -> user.getEmail().equals(email));
     }
 }

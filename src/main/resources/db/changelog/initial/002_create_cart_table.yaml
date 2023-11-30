@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cart-table
+      author: Nurislam
+      changes:
+        - createTable:
+            tableName: carts
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: varchar(50)
+                  constraints:
+                    foreignKeyName: uc_user_id
+                    references: users(email)
+                    nullable: false

@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-category-table
+      author: Nurislam
+      changes:
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: category
+                  type: varchar(150)
+                  constraints:
+                    nullable: false
