@@ -28,11 +28,19 @@ public class AppUser implements UserDetails {
 
     boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Collection<Role> roles;
 
-    @OneToOne
+    @OneToOne(mappedBy = "user")
     Cart cart;
+
+    @OneToMany(mappedBy = "user")
+    List<Product> products;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

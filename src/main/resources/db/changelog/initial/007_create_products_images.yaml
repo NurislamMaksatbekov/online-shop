@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Nurislam
       changes:
         - createTable:
-            tableName: products_image
+            tableName: products_images
             columns:
               - column:
                   name: id
@@ -22,6 +22,7 @@ databaseChangeLog:
                   name: product_id
                   type: long
                   constraints:
+                    deleteCascade: true
                     foreignKeyName: pfk_product_id
                     references: products(id)
                     nullable: false

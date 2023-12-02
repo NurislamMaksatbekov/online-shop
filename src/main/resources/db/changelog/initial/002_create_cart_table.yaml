@@ -9,6 +9,7 @@ databaseChangeLog:
               - column:
                   name: id
                   type: long
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
@@ -18,4 +19,5 @@ databaseChangeLog:
                   constraints:
                     foreignKeyName: uc_user_id
                     references: users(email)
+                    unique: true
                     nullable: false

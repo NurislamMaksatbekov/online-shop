@@ -10,6 +10,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     private ErrorResponse noSuchElementHandler(IllegalArgumentException exception) {
+        return ErrorResponse.builder(exception, HttpStatus.NOT_ACCEPTABLE, exception.getMessage()).build();
+    }
+
+    @ExceptionHandler(RoleNotFoundException.class)
+    private ErrorResponse noSuchElementHandler(RoleNotFoundException exception) {
         return ErrorResponse.builder(exception, HttpStatus.NOT_FOUND, exception.getMessage()).build();
     }
 }

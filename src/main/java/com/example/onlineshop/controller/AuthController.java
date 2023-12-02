@@ -1,10 +1,9 @@
 package com.example.onlineshop.controller;
 
 import com.example.onlineshop.dto.UserDto;
+import com.example.onlineshop.exception.RoleNotFoundException;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +19,5 @@ public interface AuthController {
     String register();
 
     @PostMapping("/register")
-    ResponseEntity<?> register(@Valid UserDto userDto);
+    String register(@Valid UserDto userDto) throws RoleNotFoundException;
 }

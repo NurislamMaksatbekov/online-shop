@@ -37,12 +37,22 @@ databaseChangeLog:
                   name: cart_id
                   type: long
                   constraints:
+                    deleteCascade: true
                     foreignKeyName: pc_fk_cart_id
                     references: carts(id)
               - column:
                   name: category_id
                   type: long
                   constraints:
+                    deleteCascade: true
                     foreignKeyName: cp_fk_categories_id
                     references: categories(id)
+                    nullable: false
+              - column:
+                  name: seller_id
+                  type: varchar(60)
+                  constraints:
+                    deleteCascade: true
+                    foreignKeyName: up_fk_user_id
+                    references: users(email)
                     nullable: false

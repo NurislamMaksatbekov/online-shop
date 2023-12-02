@@ -16,12 +16,6 @@ public class Role extends BaseEntity {
 
     private String role;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_email")
-    )
+    @ManyToMany(mappedBy = "roles")
     private Collection<AppUser> users;
-
 }

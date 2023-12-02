@@ -17,6 +17,7 @@ import java.util.List;
 public class Cart extends BaseEntity{
 
     @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "email")
     AppUser user;
 
     @ManyToMany

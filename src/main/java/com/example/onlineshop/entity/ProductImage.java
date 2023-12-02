@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductImage extends BaseEntity{
+
     @OneToOne
     @JoinColumn(name = "product_id")
     Product product;

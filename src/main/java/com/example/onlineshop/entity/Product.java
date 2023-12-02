@@ -14,11 +14,11 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "products")
-public class Product extends BaseEntity{
+public class Product extends BaseEntity {
 
     String title;
 
-    @OneToOne
+    @OneToOne(mappedBy = "product")
     ProductImage productImage;
 
     int quantity;
@@ -27,9 +27,14 @@ public class Product extends BaseEntity{
 
     double price;
 
-    @ManyToOne
-    Category  category;
+    @OneToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    Category category;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "products")
     List<Cart> carts;
+
+    @ManyToOne
+    @JoinColumn(name = "seller_id", referencedColumnName = "email")
+    AppUser user;
 }

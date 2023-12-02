@@ -14,10 +14,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category extends BaseEntity{
 
-
     String category;
 
-    @ManyToOne
+    @OneToOne(mappedBy = "category", cascade = CascadeType.ALL)
     Product product;
 
 }
